@@ -1,8 +1,5 @@
 #include <stdio.h>
 #include <pcap.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
         
 #define PCAP_SNAPSHOT 1024
 #define PCAP_TIMEOUT 100
