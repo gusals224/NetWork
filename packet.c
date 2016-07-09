@@ -43,7 +43,10 @@ void packet_view(unsigned char *user, const struct pcap_pkthdr *h, const unsigne
 	//check TCP		 
 	if(*(p+23) != 6)
 		return;
-	
+	//chekc IP
+	if(0x800 != ntohs((unsigned short*)p[12]))
+		return;
+
 	//<ethernet>
 	p+=6;
 	printf("Source MAC : ");
@@ -94,10 +97,10 @@ void packet_view(unsigned char *user, const struct pcap_pkthdr *h, const unsigne
 
 	//<tcp>
 	printf("Source Port : ");
-	printf("%d\n", ntohs(*((short*)p)));
+	printf("%d\n", ntohs(*((unsigned short*)p)));
 	p+=2;
 	printf("Destination Port : ");
-	printf("%d\n", ntohs(*((short*)p)));
+	printf("%d\n", ntohs(*((unsigned short*)p)));
 	//</tcp>
 	printf("\n");
 	return ;
